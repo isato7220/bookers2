@@ -5,42 +5,77 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/6d8a105ded.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
     <header>
-  <ul>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "Bookers", root_path %>
-      </li>
-      <li>
-        <%= link_to "Home", user_path(current_user.id) %>
-      </li>
-      <li>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "Home", root_path %>
-      </li>
-      <li>
-        <%= link_to "About", about_path %>
-      </li>
-      <li>
-        <%= link_to "Sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "Log in", new_user_session_path %>
-      </li>
-    <% end %>
-  </ul>
-</header>
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
 
+          <!-- ブランドロゴ -->
+          <%= link_to root_path, class: "navbar-brand" do %>Bookers<% end %>
+
+          <!-- ナビゲーション -->
+          <ul class="navbar-nav flex-row">
+            <% if user_signed_in? %>
+              <li class="nav-item mx-2">
+                <%= link_to root_path, class: "nav-link text-white d-flex align-items-center" do %>
+                  <i class="fa-solid fa-house mr-1" style="color: white;"></i>
+                  <span class="ms-1">Home</span>
+                <% end %>
+              </li>
+              <li class="nav-item mx-2">
+                <%= link_to books_path, class: "nav-link text-white d-flex align-items-center" do %>
+                  <i class="fa-solid fa-book mr-1" style="color: white;"></i>
+                  <span class="ms-1">books</span>
+                <% end %>
+              </li>
+              <li class="nav-item mx-2">
+                <%= link_to users_path, class: "nav-link text-white d-flex align-items-center" do %>
+                  <i class="fa-solid fa-users mr-1" style="color: white;"></i>
+                  <span class="ms-1">Users</span>
+                <% end %>
+              </li>
+              <li class="nav-item mx-2">
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-white d-flex align-items-center" do  %>
+                  <i class="fa-solid fa-arrow-right-from-bracket mr-1 style="color: white;"></i>
+                  <span>Log out</span>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item mx-2">
+                <%= link_to root_path, class: "nav-link text-white d-flex align-items-center" do %>
+                  <i class="fa-solid fa-house mr-1" style="color: white;"></i>
+                  <span class="ms-1">Home</span>
+                <% end %>
+              </li>
+              <li class="nav-item mx-2">
+                <%= link_to about_path, class: "nav-link text-white d-flex align-items-center" do  %>
+                  <i class="fa-solid fa-link mr-1 style="color: white;"></i>
+                  <span>About</span>
+                <% end %>
+              </li>
+              <li class="nav-item mx-2">
+                <%= link_to new_user_registration_path, class: "nav-link text-white d-flex align-items-center" do  %>
+                  <i class="fa-solid fa-user-plus mr-1 style="color: white;"></i>
+                  <span>Sign up</span>
+                <% end %>
+              </li>
+              <li class="nav-item mx-2">
+                <%= link_to new_user_session_path, class: "nav-link text-white d-flex align-items-center" do  %>
+                  <i class="fa-solid fa-arrow-right-from-bracket mr-1 style="color: white;"></i>
+                  <span>Log in</span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+
+        </div>
+      </nav>
+    </header>
 
     <%= yield %>
   </body>
