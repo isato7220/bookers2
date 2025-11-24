@@ -4,5 +4,19 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-    has_many :books, dependent: :destroy
+  has_many :books, dependent: :destroy
+  validates :name, presence: true, length: { minimum: 2 }, uniqueness: true
+
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
+  
+  def will_save_change_to_email?
+    false
+  end
 end
