@@ -1,7 +1,7 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
-      <%= render 'user', user: @user %>
+      <%= render 'user', user: @book.user %>
       <%= render 'book', book: @new_book %>
     </div>
     
@@ -17,6 +17,8 @@
                 <% else %>
                   <%= image_tag 'no_image', size: "80x80" %>
                 <% end %>
+                <br>
+                <%= @book.user.name %>
               <% end %>
             </td>
             <td><%= link_to @book.title, book_path(@book) %></td>
